@@ -237,6 +237,11 @@ function PartyInterface:AddCharacter(parent, uuid)
             instance.CharacterButton = charGroup:AddImageButton("Tav","EC_Portrait_Generic", UI.Settings["PartyButtonSize"])
         end
 
+        if instance.CharacterButton and not instance.CharacterButton.Image or instance.CharacterButton.Image.Icon == "" then
+            instance.CharacterButton:Destroy()
+            instance.CharacterButton = charGroup:AddButton(instance.Name)
+        end
+
         instance.CharacterButton.OnClick = function()
             -- Check if awaiting a target selection
             if UI.Await and (UI.Await.Reason == "NewSFWScene" or UI.Await.Reason == "NewNSFWScene") then
@@ -289,6 +294,11 @@ function PartyInterface:AddNPC(parent, uuid)
         end
         if not foundOrigin then
             instance.CharacterButton = npcGroup:AddImageButton("Tav","EC_Portrait_Generic", UI.Settings["PartyButtonSize"])
+        end
+
+        if instance.CharacterButton and not instance.CharacterButton.Image or instance.CharacterButton.Image.Icon == "" then
+            instance.CharacterButton:Destroy()
+            instance.CharacterButton = npcGroup:AddButton(instance.Name)
         end
 
         instance.Popup = npcGroup:AddPopup("NPCPopup")
@@ -366,11 +376,11 @@ function PartyInterface:SetSelectedCharacter(characterUuid)
     end
     for _,charOrNPC in pairs(characterAndNPCs) do
         if Helper.StringContains(charOrNPC.Uuid, characterUuid) then
-            charOrNPC.CharacterButton.Tint = {0.0, 0.9, 0.0, 1.0} -- Green Selected Color
+            -- charOrNPC.CharacterButton.Tint = {0.0, 0.9, 0.0, 1.0} -- Green Selected Color
             charOrNPC.Selected = true
             self.SelectedCharacter = charOrNPC
         else
-            charOrNPC.CharacterButton.Tint = {1.0, 1.0, 1.0, 1.0} -- Reset to regular
+            -- charOrNPC.CharacterButton.Tint = {1.0, 1.0, 1.0, 1.0} -- Reset to regular
             charOrNPC.Selected = false
         end
     end
