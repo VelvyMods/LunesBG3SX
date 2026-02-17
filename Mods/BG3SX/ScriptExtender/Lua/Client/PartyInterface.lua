@@ -230,11 +230,11 @@ function PartyInterface:AddCharacter(parent, uuid)
         for uuid,origin in pairs(Data.Origins) do
             if Helper.StringContains(uuid, instance.Uuid) then
                 foundOrigin = true
-                instance.CharacterButton = charGroup:AddImageButton("","EC_Portrait_"..origin, UI.Settings["PartyButtonSize"])
+                instance.CharacterButton = charGroup:AddImageButton(instance.Name,"EC_Portrait_"..origin, UI.Settings["PartyButtonSize"])
             end
         end
         if not foundOrigin then
-            instance.CharacterButton = charGroup:AddImageButton("","EC_Portrait_Generic", UI.Settings["PartyButtonSize"])
+            instance.CharacterButton = charGroup:AddImageButton(instance.Name,"EC_Portrait_Generic", UI.Settings["PartyButtonSize"])
         end
 
         instance.CharacterButton.OnClick = function()
@@ -284,11 +284,11 @@ function PartyInterface:AddNPC(parent, uuid)
         for uuid,origin in pairs(Data.Origins) do
             if Helper.StringContains(uuid, instance.Uuid) then
                 foundOrigin = true
-                instance.CharacterButton = npcGroup:AddImageButton("","EC_Portrait_"..origin, UI.Settings["PartyButtonSize"])
+                instance.CharacterButton = npcGroup:AddImageButton(instance.Name,"EC_Portrait_"..origin, UI.Settings["PartyButtonSize"])
             end
         end
         if not foundOrigin then
-            instance.CharacterButton = npcGroup:AddImageButton("","EC_Portrait_Generic", UI.Settings["PartyButtonSize"])
+            instance.CharacterButton = npcGroup:AddImageButton("Tav","EC_Portrait_Generic", UI.Settings["PartyButtonSize"])
         end
 
         instance.Popup = npcGroup:AddPopup("NPCPopup")
